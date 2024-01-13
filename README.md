@@ -7,6 +7,7 @@ A small Pico-8 game, based on an android game I coded in university during a 48h
 ## Changelog
 
 ### 2024-01-13
+- Added collision detection
 - Added score
 - Added block movement
 - Added blocks
