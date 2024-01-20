@@ -6,6 +6,8 @@ gravity = 0.2
 anim_cnt = 0
 block_gen_prob = 2 // in %
 score = 0
+game_over = false
+paused = false
 
 function _init()
   -- set player on floor
@@ -13,58 +15,95 @@ function _init()
 end
 
 function _update()
-  -- animation counter reset
-	 if (anim_cnt==30) anim_cnt = 0
-	 if anim_cnt % 15 == 0 then
-	   score+=1
-	 end
-	 
-	 		-- checking collision
-		if check_collis() then
-		  _draw = draw_gameover()
+		-- 🅾️ pressed pressed
+		if btn(🅾️) then
+		  -- resetting the game
+				if game_over then
+				  game_over = false
+				  score = 0
+				  blocks = {}
+				  block_gen_prob = 2
+				  block_speed = 1
+				  paused = false
+				  center_print.active =
+				  		false
+				-- pausing / resuming
+				else
+				  if paused then
+				    center_print.active =
+				      false
+				    paused = false
+				  else
+				    center_print.active =
+				      true
+				    center_print.txt = 
+				      "   paused"
+				    paused = true
+				  end
+				end
 		end
-		
-	 -- checking button presses
-  -- up button pressed
-		if (btn(⬆️) or btn(❎)) then
-				up_pressed()
-		-- no button pressed
-		elseif btn(⬆️) == false and
-									btn(⬇️) == false and
-									btn(❎) == false then
-		  no_pressed()
-		-- down pressed
-		elseif btn(⬇️) then
-		  down_pressed()
-		end
-		
-
-		
-		-- generating blocks
-		-- block_gen_prob val
-		-- defines probability 
-		-- and check that its not
-		-- too close to next block
-		if (rand_range(0,100) <
-		    block_gen_prob) and
-		    last_block_x() < 105 then
-		  gen_block()
-		end
-		move_blocks()
-		-- increase speed
-		if block_speed < 5 then
-		  block_speed += 0.002
-		end
-		-- increase block prob
-		if block_gen_prob < 10 then
-		  block_gen_prob += 0.002
-		end
-		anim_cnt += 1
-		score_conf.txt = score
-		log.txt = tostr(last_block_x())
+  if not paused then
+		  -- animation counter reset
+			 if (anim_cnt==30) anim_cnt = 0
+			 if anim_cnt % 15 == 0 then
+			   score+=1
+			 end
+			 
+			 		-- checking collision
+				if check_collis() then
+				  game_over = true
+				  paused = true
+				  center_print.active=true
+				  center_print.txt=
+				  		"  game over"..
+				  		"\n    press"..
+				  		"\n     🅾️"..
+				  		"\n to restart"
+				end
+				
+			 -- checking button presses
+		  -- up button pressed
+				if (btn(⬆️) or btn(❎)) then
+						up_pressed()
+				-- no button pressed
+				elseif btn(⬆️) == false and
+											btn(⬇️) == false and
+											btn(❎) == false then
+				  no_pressed()
+				-- down pressed
+				elseif btn(⬇️) then
+				  down_pressed()
+				end
+				
+				-- generating blocks
+				-- block_gen_prob val
+				-- defines probability 
+				-- and check that its not
+				-- too close to next block
+				if (rand_range(0,100) <
+				    block_gen_prob) and
+				    last_block_x() < 105
+				    then
+				  gen_block()
+				end
+				move_blocks()
+				-- increase speed
+				if block_speed < 5 then
+				  block_speed += 0.002
+				end
+				-- increase block prob
+				if block_gen_prob < 10 then
+				  block_gen_prob += 0.002
+				end
+				anim_cnt += 1
+  end				
+  score_conf.txt = score
+		log.txt = tostr(
+														last_block_x())
 end
 
 function _draw()
+  -- clear screen
   cls()
   
   -- draw the floor
@@ -79,12 +118,7 @@ function _draw()
   blocks_draw()
   shadow_draw()
   draw_score()
-  draw_log()
-end
-
-function draw_gameover()
-  score_conf.txt = score
-  draw_score()
+  draw_center()
   draw_log()
 end
 -->8
@@ -251,6 +285,17 @@ log =
  ["col"]    = 7
 }
 
+-- for printing text in screen
+-- center eg pause / gameover
+center_print =
+{
+ ["active"] = false,
+ ["txt"]    = "",
+ ["x"]			   = 40,
+ ["y"]      = 30,
+ ["col"]    = 7
+}
+
 -- drawing log on screen
 function draw_log()
  if (log.active) then
@@ -274,6 +319,17 @@ function draw_score()
 	       score_conf.y,
 	       score_conf.col)
 	 score_conf.txt = ""
+	end
+end
+
+-- drawing center print
+-- on screen
+function draw_center()
+ if (center_print.active) then
+	 print(center_print.txt,
+	       center_print.x, 
+	       center_print.y,
+	       center_print.col)
 	end
 end
 -->8

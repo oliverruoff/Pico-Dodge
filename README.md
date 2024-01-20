@@ -7,7 +7,8 @@ A small Pico-8 game, based on an android game I coded in university during a 48h
 ## Changelog
 
 ### 2024-01-20
-
+- Added Game Over screen
+- Added Pause option
 - Balanced block generation
 
 ### 2024-01-19
