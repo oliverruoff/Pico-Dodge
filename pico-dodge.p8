@@ -41,8 +41,13 @@ function _update()
 
 		
 		-- generating blocks
+		-- block_gen_prob val
+		-- defines probability 
+		-- and check that its not
+		-- too close to next block
 		if (rand_range(0,100) <
-		    block_gen_prob) then
+		    block_gen_prob) and
+		    last_block_x() < 105 then
 		  gen_block()
 		end
 		move_blocks()
@@ -56,7 +61,7 @@ function _update()
 		end
 		anim_cnt += 1
 		score_conf.txt = score
-		log.txt = "test"
+		log.txt = tostr(last_block_x())
 end
 
 function _draw()
@@ -336,6 +341,16 @@ function check_collis()
     end
   end
   return false
+end
+
+
+-- gets x coord of last block
+function last_block_x()
+  if (#blocks > 0) then
+    return (blocks[#blocks].x)
+  else
+  		return -1
+  end
 end
 -->8
 -- utils

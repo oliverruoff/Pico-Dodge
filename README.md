@@ -6,6 +6,10 @@ A small Pico-8 game, based on an android game I coded in university during a 48h
 > Note to me: Cardridge picture can be taken by pressing F2 while playing
 ## Changelog
 
+### 2024-01-20
+
+- Balanced block generation
+
 ### 2024-01-19
 - Added shadow animation
 - Added shadow
