@@ -1,12 +1,13 @@
 # Pico-Dodge
 A small Pico-8 game, based on an android game I coded in university during a 48h hackathon.
 
-## Cardridge 
+## Cartridge 
 ![Pico-Dodge](pico-dodge.p8.png)
 > Note to me: Cardridge picture can be taken by pressing F2 while playing
 ## Changelog
 
 ### 2024-01-24
+- Added clouds
 - Added highscore incl. saving & loading
 
 ### 2024-01-20
