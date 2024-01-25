@@ -60,23 +60,6 @@ function _update()
 			 if anim_cnt % 15 == 0 then
 			   score+=1
 			 end
-			 
-			 		-- checking collision
-			 		-- meaning game over
-				if check_collis() then
-				  game_over = true
-				  paused = true
-				  center_print.active=true
-				  center_print.txt=
-				  		"  game over"..
-				  		"\n    press"..
-				  		"\n     🅾️"..
-				  		"\n to restart"
-				  if score > highscore then
-				    highscore = score
-				    savehighscore()
-				  end
-				end
 				
 			 -- checking button presses
 		  -- up button pressed
@@ -91,6 +74,7 @@ function _update()
 				elseif btn(⬇️) then
 				  down_pressed()
 				end
+				
 				
 				-- generating blocks
 				-- block_gen_prob val
@@ -125,7 +109,25 @@ function _update()
 				  block_gen_prob += 0.002
 				end
 				anim_cnt += 1
-  end				
+  end			
+  
+  		-- checking collision
+			 		-- meaning game over
+				if check_collis() then
+				  game_over = true
+				  paused = true
+				  center_print.active=true
+				  center_print.txt=
+				  		"  game over"..
+				  		"\n    press"..
+				  		"\n     🅾️"..
+				  		"\n to restart"
+				  if score > highscore then
+				    highscore = score
+				    savehighscore()
+				  end
+				end
+  	
   score_conf.txt = score
   highscore_print.txt =
   		highscore
