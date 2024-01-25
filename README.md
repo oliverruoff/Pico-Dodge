@@ -7,6 +7,7 @@ A small Pico-8 game, based on an android game I coded in university during a 48h
 ## Changelog
 
 ### 2024-01-25
+- Adjusted ducking sprites to better fit with hitbox
 - Changed color design
 - Added mountains background
 - Shadow now also animated while jumping
