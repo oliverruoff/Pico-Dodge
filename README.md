@@ -7,6 +7,8 @@ A small Pico-8 game, based on an android game I coded in university during a 48h
 ## Changelog
 
 ### 2024-01-25
+- Changed color design
+- Added mountains background
 - Shadow now also animated while jumping
 - Some code refactoring on player movement
 - Improved collision detection (hitbox feels more precise)
