@@ -6,6 +6,10 @@ A small Pico-8 game, based on an android game I coded in university during a 48h
 > Note to me: Cardridge picture can be taken by pressing F2 while playing
 ## Changelog
 
+### 2024-01-26
+- Switched to button press for pause and gameover
+- small cloud sprite adjustment
+
 ### 2024-01-25
 - Adjusted ducking sprites to better fit with hitbox
 - Changed color design
